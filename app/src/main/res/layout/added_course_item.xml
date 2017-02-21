@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        tools:src="@mipmap/ic_launcher"
+        android:padding="8dp"
+        android:id="@+id/imageView"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_weight="1"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp">
+    <TextView
+        tools:text="Bootstrap"
+        android:id="@+id/courseName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
+    <ProgressBar
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:id="@+id/progress"
+        tools:progress="80"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+    <TextView
+        android:id="@+id/progressText"
+        tools:text="80% complete"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+</LinearLayout>
+</LinearLayout>

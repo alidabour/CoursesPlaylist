@@ -1,0 +1,18 @@
+{
+  "course" : {
+    "-1" : {
+      "name" : "Java (Beginner) Programming Tutorials",
+      "key" : "PLFE2CE09D83EE3E28",
+      "url" : "https://i.ytimg.com/vi/Hl-zzrqQoSE/mqdefault.jpg",
+      "channelTitle" : "thenewboston",
+      "description" : "Here are all of my Java programming tutorials."
+    },
+    "-2" :{
+      "name" : "Java Tutorial For Beginners (Step by Step tutorial)",
+      "key" : "PLS1QulWo1RIbfTjQvTdj8Y6yyq4R7g-Al",
+      "url" : "https://i.ytimg.com/vi/r59xYe3Vyks/mqdefault.jpg",
+      "channelTitle" :"ProgrammingKnowledge",
+      "description" : "Java Tutorial For Beginners: Java Programming From Scratch,Java Programming - Step by Step tutorial ,learn free java tutorial class sun beginner programming tutorials, download, learn, language, source code, online, core java,Java Tutorial for Beginners - Learning Java in simple and easy steps : A beginner's tutorial containing complete knowledge of Java Syntax Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI"
+    }
+  }
+}
