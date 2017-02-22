@@ -1,6 +1,7 @@
 package com.example.ali.coursesplaylist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,23 +11,18 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ali.coursesplaylist.adapter.AddedAdapter;
+import com.example.ali.coursesplaylist.data.Course;
 import com.example.ali.coursesplaylist.data.CourseContentProvider;
 import com.example.ali.coursesplaylist.data.DataContract;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AddedFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AddedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AddedFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
     RecyclerView recyclerView;
     AddedAdapter addedAdapter;
@@ -40,12 +36,14 @@ public class AddedFragment extends Fragment implements LoaderManager.LoaderCallb
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v("Test","OnCreate");
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.v("Test","OnCreateView");
         View view =  inflater.inflate(R.layout.fragment_added, container, false);
 
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
@@ -53,7 +51,17 @@ public class AddedFragment extends Fragment implements LoaderManager.LoaderCallb
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
 
-        addedAdapter = new AddedAdapter();
+        addedAdapter = new AddedAdapter(getContext(),new AddedAdapter.OnClickHandlerAdd() {
+            @Override
+            public void onClick(Course course) {
+                Intent intent = new Intent(getActivity(),VideoActivity.class);
+                intent.putExtra("key",course.getKey());
+                Log.v("Test","Key AddFragment: "+course.getKey());
+
+
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(addedAdapter);
 
         return view;
@@ -62,24 +70,64 @@ public class AddedFragment extends Fragment implements LoaderManager.LoaderCallb
     @Override
     public void onResume() {
         super.onResume();
+        Log.v("Test","OnPause");
         getLoaderManager().restartLoader(CURSOR_LOADER_ID, null, this);
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        Log.v("Test","OnPause");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.v("Test","OnDestroyView");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.v("Test","OnStart");
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.v("Test","OnAttach");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.v("Test","OnDestory");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.v("Test","OnDetach");
+    }
+
+    @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Log.v("Test","OnCreateLoader");
         return new CursorLoader(getContext(), DataContract.CourseEntry.CONTENT_URI
-                ,new String[]{DataContract.CourseEntry.PLAYLIST_KEY_COLUMN}
+                ,new String[]{DataContract.CourseEntry.PLAYLIST_KEY_COLUMN,DataContract.CourseEntry.PLAYLIST_NAME_COLUMN, DataContract.CourseEntry.PLAYLIST_IMAGE_URL}
         ,null,null,null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        Log.v("Test","OnLoadFinished");
         addedAdapter.swapCursor(data);
 
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
+        Log.v("Test","OnLoaderReset");
         addedAdapter.swapCursor(null);
     }
 

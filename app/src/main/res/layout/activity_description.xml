@@ -9,8 +9,7 @@
 
     <ImageView
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_height="wrap_content"
         android:id="@+id/imageView2"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -19,6 +18,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        tools:text="Ali Haad"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         android:id="@+id/channelTitle"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
@@ -28,6 +29,8 @@
 
     <Button
         android:text="@string/add_button"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Inverse"
+        android:background="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/add"
@@ -36,20 +39,14 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintBottom_toBottomOf="@+id/channelTitle"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/channelTitle"
-        app:layout_constraintLeft_toLeftOf="@+id/channelTitle" />
+
 
     <TextView
-        android:text="@string/course_descirption"
+        android:text="@string/course_description"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -57,7 +54,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/add"
         app:layout_constraintRight_toRightOf="@+id/add"
-        app:layout_constraintLeft_toLeftOf="@+id/textView3" />
+        app:layout_constraintLeft_toLeftOf="@+id/channelTitle" />
 
     <TextView
         android:text="Des"
@@ -71,6 +68,7 @@
 
     <TextView
         android:text="@string/curriculum"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

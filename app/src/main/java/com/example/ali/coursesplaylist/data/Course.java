@@ -1,5 +1,7 @@
 package com.example.ali.coursesplaylist.data;
 
+import android.database.Cursor;
+
 /**
  * Created by Ali on 2/21/2017.
  */
@@ -21,6 +23,15 @@ public class Course {
         this.url = url;
         this.description = description;
         this.channelTitle = channelTitle;
+    }
+    public static Course fromCursor(Cursor cursor){
+        Course course = new Course();
+        course.name = cursor.getString(cursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_NAME_COLUMN));
+        course.url = cursor.getString(cursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_IMAGE_URL));
+        course.key = cursor.getString(cursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_KEY_COLUMN));
+        course.channelTitle = "not set";
+        course.description = "not set";
+        return course;
     }
     public String getUrl() {
         return url;

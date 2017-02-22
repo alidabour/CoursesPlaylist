@@ -59,26 +59,15 @@ public class ExploreFragment extends Fragment implements StringResponseListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+        if(mDatabase == null){
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        }
         mDatabase = FirebaseDatabase.getInstance().getReference().child("course");
         mDatabase.keepSynced(true);
+
         courseList = new ArrayList<>();
-        //Test
-        ContentValues contentValue = new ContentValues();
-        contentValue.put(DataContract.CourseEntry.PLAYLIST_KEY_COLUMN,"firstV");
-//        Uri uri = getActivity().getContentResolver().insert(DataContract.CourseEntry.CONTENT_URI,contentValue);
-//        if(uri != null){
-//            Toast.makeText(getContext(),uri.toString(),Toast.LENGTH_LONG).show();
-//        }{
-//            Toast.makeText(getContext(),"Failed",Toast.LENGTH_LONG).show();
-//        }
-        Cursor c = getActivity().getContentResolver().query(DataContract.CourseEntry.CONTENT_URI,null,null,null,null);
-        c.moveToFirst();
-        while(c.moveToNext()){
-            Log.v("Test","Key Db: "+c.getString(c.getColumnIndex(DataContract.CourseEntry.PLAYLIST_KEY_COLUMN)));
-        }
-        //end test
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
 
@@ -100,6 +89,7 @@ public class ExploreFragment extends Fragment implements StringResponseListener{
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                courseList = new ArrayList<>();
                 Log.v("Test","DataSnapshot to string:"+dataSnapshot.toString());
                 Log.v("Test","Data child count" + dataSnapshot.getChildrenCount());
                 for (DataSnapshot x:dataSnapshot.getChildren()){
@@ -117,6 +107,8 @@ public class ExploreFragment extends Fragment implements StringResponseListener{
                 intent.putExtra("description",course.getDescription());
                 intent.putExtra("channelTitle",course.getChannelTitle());
                 intent.putExtra("key",course.getKey());
+                intent.putExtra("url",course.getUrl());
+                intent.putExtra("name",course.getName());
                 startActivity(intent);
             }
         }));

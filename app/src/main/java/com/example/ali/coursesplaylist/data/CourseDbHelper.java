@@ -19,8 +19,11 @@ public class CourseDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         final String CREATE_TABLE = "CREATE TABLE "+ CourseEntry.TABLE_NAME + " (" +
-                CourseEntry._ID + " INTEGER PRIMARY KEY, " +
-                CourseEntry.PLAYLIST_KEY_COLUMN + " TEXT NOT NULL);";
+                CourseEntry._ID + " INTEGER PRIMARY KEY , " +
+                CourseEntry.PLAYLIST_KEY_COLUMN + " TEXT NOT NULL, " +
+                CourseEntry.PLAYLIST_NAME_COLUMN + " TEXT NOT NULL, " +
+                CourseEntry.PLAYLIST_IMAGE_URL + " TEXT NOT NULL" +
+                ");";
 
         sqLiteDatabase.execSQL(CREATE_TABLE);
 

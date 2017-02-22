@@ -22,5 +22,7 @@ public class DataContract  {
         public static Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_COURSE).build();
         public static final String TABLE_NAME = "course";
         public static final String PLAYLIST_KEY_COLUMN = "playlist";
+        public static final String PLAYLIST_NAME_COLUMN = "playlistname";
+        public static final String PLAYLIST_IMAGE_URL = "playlistimage";
     }
 }

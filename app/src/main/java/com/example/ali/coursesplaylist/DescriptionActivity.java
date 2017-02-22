@@ -1,16 +1,25 @@
 package com.example.ali.coursesplaylist;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ali.coursesplaylist.adapter.DescriptionAdapter;
+import com.example.ali.coursesplaylist.data.Course;
+import com.example.ali.coursesplaylist.data.DataContract;
 import com.example.ali.coursesplaylist.data.JsonData.Item;
 import com.example.ali.coursesplaylist.data.JsonData.Playlist;
 import com.example.ali.coursesplaylist.data.JsonData.Snippet;
@@ -27,12 +36,18 @@ public class DescriptionActivity extends AppCompatActivity implements StringResp
     Button addButton;
     TextView channelTitle;
     TextView description;
+    ImageView imageView;
     List<Snippet> snippetList;
+    String key;
+    String url;
+    String playName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
+        imageView = (ImageView) findViewById(R.id.imageView2);
         addButton = (Button) findViewById(R.id.add);
+        addButton.setEnabled(false);
         channelTitle = (TextView) findViewById(R.id.channelTitle);
         description = (TextView) findViewById(R.id.description);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
@@ -44,7 +59,10 @@ public class DescriptionActivity extends AppCompatActivity implements StringResp
         if(intent != null){
             description.setText(intent.getStringExtra("description"));
             channelTitle.setText(intent.getStringExtra("channelTitle"));
-           String key = intent.getStringExtra("key");
+            key = intent.getStringExtra("key");
+            url = intent.getStringExtra("url");
+            Glide.with(getApplicationContext()).load(url).into(imageView);
+            playName = intent.getStringExtra("name");
             DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(this);
             String url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" +
                     key+"&key=AIzaSyBxXCY_aLBJpE1Xlazei3PMVycq2j-cCrU";
@@ -54,6 +72,17 @@ public class DescriptionActivity extends AppCompatActivity implements StringResp
                 e.printStackTrace();
             }
         }
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(DataContract.CourseEntry.PLAYLIST_KEY_COLUMN,key);
+                contentValues.put(DataContract.CourseEntry.PLAYLIST_NAME_COLUMN,playName);
+                contentValues.put(DataContract.CourseEntry.PLAYLIST_IMAGE_URL,url);
+                Log.v("Test","Content Value:"+contentValues);
+                getContentResolver().insert(DataContract.CourseEntry.CONTENT_URI,contentValues);
+            }
+        });
     }
 
     @Override
@@ -74,6 +103,8 @@ public class DescriptionActivity extends AppCompatActivity implements StringResp
             }
         });
         recyclerView.setAdapter(descriptionAdapter);
+        addButton.setEnabled(true);
+
     }
 
     @Override
