@@ -36,6 +36,9 @@ public class DescriptionAdapter extends RecyclerView.Adapter<DescriptionAdapter.
     public void onBindViewHolder(DescriptionViewHolder holder, int position) {
         holder.videoName.setText(snippets.get(position).getTitle());
         holder.videoNum.setText(String.valueOf(position));
+
+        holder.videoName.setContentDescription(snippets.get(position).getTitle());
+        holder.videoNum.setContentDescription(String.valueOf(position));
     }
 
     @Override

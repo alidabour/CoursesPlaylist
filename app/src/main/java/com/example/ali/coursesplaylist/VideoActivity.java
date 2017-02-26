@@ -1,11 +1,11 @@
 package com.example.ali.coursesplaylist;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -27,7 +27,8 @@ import java.util.List;
 public class VideoActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener, StringResponseListener
 //        ,DescriptionAdapter.OnClickHandler
 {
-    YouTubePlayerView youTubePlayer;
+    YouTubePlayerView youTubePlayerView;
+    YouTubePlayer youTubePlayer;
     RecyclerView recyclerView;
     DescriptionAdapter descriptionAdapter;
     DescriptionAdapter.OnClickHandler onClickHandler;
@@ -38,26 +39,28 @@ public class VideoActivity extends YouTubeBaseActivity implements YouTubePlayer.
     TextView title;
     TextView description;
     String key;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v("TVideo", "OnCreateVideo");
         setContentView(R.layout.activity_video);
-        title = ((TextView)findViewById(R.id.title));
-        description = ((TextView)findViewById(R.id.description));
+        title = ((TextView) findViewById(R.id.title));
+        description = ((TextView) findViewById(R.id.description));
         Intent intent = getIntent();
-        if(intent != null){
+        if (intent != null) {
             key = intent.getStringExtra("key");
-            if (key != null){
-                Log.v("Test","Key : : "+key);
-            }else {
-                Log.v("Test","KEY not found");
+            if (key != null) {
+                Log.v("TVideo", "Key : : " + key);
+            } else {
+                Log.v("TVideo", "KEY not found");
             }
         }
-        youTubePlayer = (YouTubePlayerView) findViewById(R.id.youtubeplayer);
-        youTubePlayer.initialize(BuildConfig.YOUTUPE_API_KEY,this);
+        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayer);
+        youTubePlayerView.initialize(BuildConfig.YOUTUPE_API_KEY, this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
-        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(),DividerItemDecoration.VERTICAL));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
 
         DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(this);
         String url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" +
@@ -69,53 +72,74 @@ public class VideoActivity extends YouTubeBaseActivity implements YouTubePlayer.
         }
 
 
-
     }
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, boolean b) {
-        if(!b){
-//            youTubePlayer.cueVideo("fhWaJi1Hsfo");
-            youtubeKeyCall = new YoutubeKeyCall() {
-                @Override
-                public void getKey(Snippet key) {
-                    Log.v("Test","Key Video Ac. :"+key.getResourceId().getVideoId());
-                    youTubePlayer.cueVideo(key.getResourceId().getVideoId());
-                    title.setText(key.getTitle());
-                    description.setText(key.getDescription());
+        Log.v("TVideo", "onInitializationSuccess");
+        this.youTubePlayer=youTubePlayer;
+//            youTubePlayerView.cueVideo("fhWaJi1Hsfo");
+//        if(!b){
+//        youtubeKeyCall = new YoutubeKeyCall() {
+//            @Override
+//            public void getKey(Snippet key) {
+//                Log.v("TVideo", "onInitializationSuccess Inside If");
+//                Log.v("TVideo", "Key Video Ac. :" + key.getResourceId().getVideoId());
+//                youTubePlayerView.cueVideo(key.getResourceId().getVideoId());
+//                youTubePlayerView.setFullscreen(true);
+//                title.setText(key.getTitle());
+//                description.setText(key.getDescription());
+//
+//            }
+//        };
+//    }else {
+//            Log.v("TVideo","B = "+b);
+//        }
 
-                }
-            };
-        }
-    }
+}
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+        Log.v("TVideo", "onInitializationFailure");
 
     }
 
     @Override
     public void notifySuccess(String response) {
+        Log.v("TVideo", "notifySuccess");
         Gson gson = new Gson();
         Playlist p = gson.fromJson(response, Playlist.class);
         List<Item> l = p.getItems();
         urlsList = new ArrayList<>();
         titleList = new ArrayList<>();
         snippets = new ArrayList<>();
-        if (l != null){
+        if (l != null) {
+            Log.v("TVideo","l not null");
+            if (l.get(0).getSnippet() != null) {
+                Log.v("TVideo","snippet not null");
+                if(youTubePlayer != null){
+                    youTubePlayer.cueVideo(l.get(0).getSnippet().getResourceId().getVideoId());
+                }
+                if (youtubeKeyCall != null) {
+                    Log.v("TVideo", "notifySuccess inside if");
 
-            youtubeKeyCall.getKey(l.get(0).getSnippet());
-            for (Item x: l){
+                    youtubeKeyCall.getKey(l.get(0).getSnippet());
+                }
+            }
+            for (Item x : l) {
                 titleList.add(x.getSnippet().getTitle());
                 urlsList.add(x.getSnippet().getThumbnails().getMedium().getUrl());
                 snippets.add(x.getSnippet());
-                Log.v("Test","Title :"+x.getSnippet().getThumbnails().getDefault().getUrl());
+//                Log.v("TVideo", "Title :" + x.getSnippet().getThumbnails().getDefault().getUrl());
             }
         }
         descriptionAdapter = new DescriptionAdapter(snippets, new DescriptionAdapter.OnClickHandler() {
             @Override
             public void onClick(Snippet s) {
-                youtubeKeyCall.getKey(s);
+                if(youTubePlayer != null){
+                    youTubePlayer.cueVideo(s.getResourceId().getVideoId());
+                }
+//                youtubeKeyCall.getKey(s);
             }
         });
         recyclerView.setAdapter(descriptionAdapter);
@@ -124,7 +148,18 @@ public class VideoActivity extends YouTubeBaseActivity implements YouTubePlayer.
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Log.v("TVideo","Land");
+        }else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Log.v("TVideo","Port");
+        }
+    }
+
+    @Override
     public void notifyError(String error) {
+        Log.v("TVideo", "notify Error");
 
     }
 

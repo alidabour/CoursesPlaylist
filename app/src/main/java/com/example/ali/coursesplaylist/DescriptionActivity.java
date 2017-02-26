@@ -58,7 +58,11 @@ public class DescriptionActivity extends AppCompatActivity implements StringResp
         Intent intent = getIntent();
         if(intent != null){
             description.setText(intent.getStringExtra("description"));
+            description.setContentDescription(intent.getStringExtra("description"));
+
             channelTitle.setText(intent.getStringExtra("channelTitle"));
+            channelTitle.setContentDescription(intent.getStringExtra("channelTitle"));
+
             key = intent.getStringExtra("key");
             url = intent.getStringExtra("url");
             Glide.with(getApplicationContext()).load(url).into(imageView);

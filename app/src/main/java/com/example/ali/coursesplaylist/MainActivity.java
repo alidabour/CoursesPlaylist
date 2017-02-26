@@ -1,5 +1,7 @@
 package com.example.ali.coursesplaylist;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,12 +25,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.example.ali.coursesplaylist.adapter.ExploreCoursesAdapter;
 import com.example.ali.coursesplaylist.data.DataContract;
 import com.example.ali.coursesplaylist.data.JsonData.Item;
 import com.example.ali.coursesplaylist.data.JsonData.Playlist;
+import com.example.ali.coursesplaylist.widget.CollectionWidget;
 import com.google.gson.Gson;
 
 import java.net.MalformedURLException;
@@ -57,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        updateAllWidgets();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -72,14 +75,6 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
     }
 
@@ -122,13 +117,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Log.v("Test","Positon : "+position);
+            Log.v("Test", "Positon : " + position);
             // getItem is called to instantiate the fragment for the given page.
             // Return a ExploreFragment (defined as a static inner class below).
-            if(position == 0 ){
+            if (position == 0) {
                 return new ExploreFragment().newInstance();
-            }if (position == 1){
-                Log.v("Test","Null");
+            }
+            if (position == 1) {
+                Log.v("Test", "Null");
                 return new AddedFragment().newInstance();
             }
             return null;
@@ -150,6 +146,17 @@ public class MainActivity extends AppCompatActivity {
                     return "Added";
             }
             return null;
+        }
+    }
+
+    private void updateAllWidgets() {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, CollectionWidget.class));
+        if (appWidgetIds.length > 0) {
+            //new CollectionWidget().onUpdate(this, appWidgetManager, appWidgetIds);
+            RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.course_app_widget);
+
+            appWidgetManager.updateAppWidget(appWidgetIds, views);
         }
     }
 }

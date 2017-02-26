@@ -18,7 +18,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Ali Haad"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         android:id="@+id/channelTitle"
         android:layout_marginTop="16dp"
@@ -29,6 +28,7 @@
 
     <Button
         android:text="@string/add_button"
+        android:contentDescription="@string/add_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Inverse"
         android:background="@color/colorAccent"
         android:layout_width="wrap_content"
@@ -46,6 +46,7 @@
 
     <TextView
         android:text="@string/course_description"
+        android:contentDescription="@string/course_description"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
         android:gravity="center"
         android:layout_width="0dp"
@@ -57,7 +58,6 @@
         app:layout_constraintLeft_toLeftOf="@+id/channelTitle" />
 
     <TextView
-        android:text="Des"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/description"
@@ -68,6 +68,7 @@
 
     <TextView
         android:text="@string/curriculum"
+        android:contentDescription="@string/curriculum"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
         android:gravity="center"
         android:layout_width="0dp"

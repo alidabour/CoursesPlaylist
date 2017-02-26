@@ -46,7 +46,12 @@ public class AddedAdapter extends RecyclerView.Adapter<AddedAdapter.AddedViewHol
 
         String url = mCursor.getString(mCursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_IMAGE_URL));
         Glide.with(context).load(url).into(holder.courseImage);
-        holder.courseName.setText(mCursor.getString(mCursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_NAME_COLUMN)));
+
+        String courseName = mCursor.getString(mCursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_NAME_COLUMN));
+        holder.courseName.setText(courseName);
+
+        holder.courseName.setContentDescription(courseName);
+        holder.courseImage.setContentDescription(courseName);
     }
 
     @Override

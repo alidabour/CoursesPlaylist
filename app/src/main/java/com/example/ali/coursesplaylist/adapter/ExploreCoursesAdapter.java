@@ -45,6 +45,9 @@ public class ExploreCoursesAdapter extends RecyclerView.Adapter<ExploreCoursesAd
         Course course = courses.get(position);
         holder.courseName.setText(course.getName());
         Glide.with(context).load(course.getUrl()).into(holder.imageView);
+
+        holder.courseName.setContentDescription(course.getName());
+        holder.imageView.setContentDescription(course.getName());
     }
 
     @Override

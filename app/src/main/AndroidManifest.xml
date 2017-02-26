@@ -8,7 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="false"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
@@ -26,6 +26,15 @@
             android:name="com.example.ali.coursesplaylist.data.CourseContentProvider"
             android:authorities="com.example.ali.coursesplaylist"
             android:exported="false"/>
+        <receiver android:name="com.example.ali.coursesplaylist.widget.CollectionWidget"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/collection_widget_info" />
+        </receiver>
     </application>
 
 </manifest>
