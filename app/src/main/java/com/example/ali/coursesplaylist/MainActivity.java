@@ -33,6 +33,7 @@ import com.example.ali.coursesplaylist.data.DataContract;
 import com.example.ali.coursesplaylist.data.JsonData.Item;
 import com.example.ali.coursesplaylist.data.JsonData.Playlist;
 import com.example.ali.coursesplaylist.widget.CollectionWidget;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import java.net.MalformedURLException;
@@ -42,26 +43,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+    private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         setContentView(R.layout.activity_main);
-        updateAllWidgets();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -72,6 +62,18 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        Intent intent = getIntent();
+        if (intent != null){
+            String frag = intent.getStringExtra("fragment");
+            if(frag != null){
+                switch (frag){
+                    case "added":
+                        mViewPager.setCurrentItem(1);
+                        break;
+                }
+            }
+
+        }
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -100,15 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -117,14 +110,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Log.v("Test", "Positon : " + position);
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a ExploreFragment (defined as a static inner class below).
             if (position == 0) {
                 return new ExploreFragment().newInstance();
             }
             if (position == 1) {
-                Log.v("Test", "Null");
                 return new AddedFragment().newInstance();
             }
             return null;
@@ -133,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 2;
         }
 
@@ -149,14 +137,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateAllWidgets() {
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, CollectionWidget.class));
-        if (appWidgetIds.length > 0) {
-            //new CollectionWidget().onUpdate(this, appWidgetManager, appWidgetIds);
-            RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.course_app_widget);
 
-            appWidgetManager.updateAppWidget(appWidgetIds, views);
-        }
-    }
 }

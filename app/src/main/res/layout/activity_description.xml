@@ -1,93 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_description"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ali.coursesplaylist.DescriptionActivity">
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        android:id="@+id/channelTitle"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:text="@string/add_button"
-        android:contentDescription="@string/add_button"
-        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Inverse"
-        android:background="@color/colorAccent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/add"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/channelTitle"
-        app:layout_constraintVertical_bias="1.0" />
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
 
+            <TextView
+                android:layout_weight="2"
+                android:id="@+id/channelTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@color/colorAccent"
+                android:contentDescription="@string/add_button"
+                android:text="@string/add_button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Inverse" />
 
-    <TextView
-        android:text="@string/course_description"
-        android:contentDescription="@string/course_description"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-        android:gravity="center"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/add"
-        app:layout_constraintRight_toRightOf="@+id/add"
-        app:layout_constraintLeft_toLeftOf="@+id/channelTitle" />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/description"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintLeft_toLeftOf="@+id/textView4"
-        app:layout_constraintRight_toRightOf="@+id/textView4" />
+        <TextView
+            android:layout_marginBottom="8dp"
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/course_description"
+            android:gravity="center"
+            android:text="@string/course_description"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
 
-    <TextView
-        android:text="@string/curriculum"
-        android:contentDescription="@string/curriculum"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-        android:gravity="center"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView6"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintLeft_toLeftOf="@+id/description"
-        app:layout_constraintRight_toRightOf="@+id/description"
-        app:layout_constraintHorizontal_bias="0.0" />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintLeft_toLeftOf="@+id/textView6"
-        app:layout_constraintRight_toRightOf="@+id/textView6"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/curriculum"
+            android:gravity="center"
+            android:text="@string/curriculum"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

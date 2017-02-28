@@ -3,15 +3,7 @@
     android:id="@+id/widget"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     android:orientation="vertical">
-
-    <TextView
-        android:background="@color/colorAccent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello People"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
     <ListView
         android:id="@+id/widget_list"

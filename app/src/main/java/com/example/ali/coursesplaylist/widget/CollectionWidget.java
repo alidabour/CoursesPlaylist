@@ -35,7 +35,8 @@ public class CollectionWidget extends AppWidgetProvider {
             } else {
                 setRemoteAdapterV11(context, views);
             }
-            Intent clickIntentTemplate =new Intent(context, VideoActivity.class);
+            Intent clickIntentTemplate =new Intent(context, MainActivity.class);
+            clickIntentTemplate.putExtra("fragment","added");
             PendingIntent clickPendingIntentTemplate = TaskStackBuilder.create(context)
                     .addNextIntentWithParentStack(clickIntentTemplate)
                     .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);

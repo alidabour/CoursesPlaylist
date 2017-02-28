@@ -22,6 +22,8 @@ import com.example.ali.coursesplaylist.data.Course;
 import com.example.ali.coursesplaylist.data.DataContract;
 import com.example.ali.coursesplaylist.data.JsonData.Item;
 import com.example.ali.coursesplaylist.data.JsonData.Playlist;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +49,6 @@ public class ExploreFragment extends Fragment implements StringResponseListener{
     private List<Course> courseList;
     private RecyclerView recyclerView;
     private DatabaseReference mDatabase;
-
     public ExploreFragment() {
     }
 
@@ -60,12 +61,20 @@ public class ExploreFragment extends Fragment implements StringResponseListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdView.loadAd(adRequest);
 
         if(mDatabase == null){
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+//            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+//            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//            database.setPersistenceEnabled(true);
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("course");
+//            mDatabase = FirebaseDatabase.getInstance().getReference().child("course");
+            mDatabase.keepSynced(true);
         }
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("course");
-        mDatabase.keepSynced(true);
 
         courseList = new ArrayList<>();
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);

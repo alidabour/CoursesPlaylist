@@ -40,10 +40,6 @@ public class AddedAdapter extends RecyclerView.Adapter<AddedAdapter.AddedViewHol
     @Override
     public void onBindViewHolder(AddedViewHolder holder, int position) {
         mCursor.moveToPosition(position);
-//        holder.courseImage.setImageResource(R.mipmap.ic_launcher);
-        holder.progressText.setText("90% Completed");
-        holder.progressBar.setProgress(90);
-
         String url = mCursor.getString(mCursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_IMAGE_URL));
         Glide.with(context).load(url).into(holder.courseImage);
 
@@ -78,14 +74,10 @@ public class AddedAdapter extends RecyclerView.Adapter<AddedAdapter.AddedViewHol
 
     public class AddedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView courseName;
-        ProgressBar progressBar;
-        TextView progressText;
         ImageView courseImage;
         public AddedViewHolder(View itemView) {
             super(itemView);
             courseName = (TextView) itemView.findViewById(R.id.courseName);
-            progressBar = (ProgressBar) itemView.findViewById(R.id.progress);
-            progressText = (TextView) itemView.findViewById(R.id.progressText);
             courseImage = (ImageView) itemView.findViewById(R.id.imageView);
             itemView.setOnClickListener(this);
         }
