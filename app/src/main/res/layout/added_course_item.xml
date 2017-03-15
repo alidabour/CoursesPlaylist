@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:id="@+id/line1"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp"
+    android:paddingBottom="@dimen/eightDP"
+    android:paddingTop="@dimen/eightDP"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
         tools:src="@mipmap/ic_launcher"
-        android:padding="8dp"
+        android:padding="@dimen/eightDP"
         android:id="@+id/imageView"
         android:layout_weight="1"
         android:layout_width="0dp"

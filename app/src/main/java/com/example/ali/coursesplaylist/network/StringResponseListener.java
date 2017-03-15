@@ -1,4 +1,4 @@
-package com.example.ali.coursesplaylist;
+package com.example.ali.coursesplaylist.network;
 
 /**
  * Created by Ali on 2/18/2017.

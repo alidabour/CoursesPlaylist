@@ -1,52 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ali.coursesplaylist">
+          package="com.example.ali.coursesplaylist">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 
     <application
+        android:name=".FirebaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".FirebaseApp"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".controller.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DescriptionActivity" />
-        <activity android:name=".VideoActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
+        <activity android:name=".controller.DescriptionActivity"/>
+        <activity
+            android:name=".controller.VideoActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
             />
 
         <provider
             android:name="com.example.ali.coursesplaylist.data.CourseContentProvider"
             android:authorities="com.example.ali.coursesplaylist"
             android:exported="false"/>
-        <receiver android:name="com.example.ali.coursesplaylist.widget.CollectionWidget"
+        <receiver
+            android:name="com.example.ali.coursesplaylist.widget.CollectionWidget"
             android:enabled="true">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/collection_widget_info" />
+                android:resource="@xml/collection_widget_info"/>
         </receiver>
-        <service android:name=".widget.WidgetDataProvider"
+        <service
+            android:name=".widget.WidgetDataProvider"
             android:enabled="true"
-            android:permission="android.permission.BIND_REMOTEVIEWS"
-            android:exported="false"/>
-        <activity android:name="com.google.android.gms.ads.AdActivity"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent" />
+            android:theme="@android:style/Theme.Translucent"/>
     </application>
 
 </manifest>

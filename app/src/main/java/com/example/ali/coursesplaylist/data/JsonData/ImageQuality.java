@@ -7,7 +7,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class High implements Parcelable
+public class ImageQuality implements Parcelable
 {
 
     @SerializedName("url")
@@ -19,22 +19,22 @@ public class High implements Parcelable
     @SerializedName("height")
     @Expose
     private Integer height;
-    public final static Parcelable.Creator<High> CREATOR = new Creator<High>() {
+    public final static Parcelable.Creator<ImageQuality> CREATOR = new Creator<ImageQuality>() {
 
 
         @SuppressWarnings({
             "unchecked"
         })
-        public High createFromParcel(Parcel in) {
-            High instance = new High();
+        public ImageQuality createFromParcel(Parcel in) {
+            ImageQuality instance = new ImageQuality();
             instance.url = ((String) in.readValue((String.class.getClassLoader())));
             instance.width = ((Integer) in.readValue((Integer.class.getClassLoader())));
             instance.height = ((Integer) in.readValue((Integer.class.getClassLoader())));
             return instance;
         }
 
-        public High[] newArray(int size) {
-            return (new High[size]);
+        public ImageQuality[] newArray(int size) {
+            return (new ImageQuality[size]);
         }
 
     }

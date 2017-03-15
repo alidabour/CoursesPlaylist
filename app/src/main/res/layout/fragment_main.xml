@@ -1,11 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ali.coursesplaylist.MainActivity$ExploreFragment">
+    tools:context="com.example.ali.coursesplaylist.controller.MainActivity$ExploreFragment">
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -43,7 +42,7 @@
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="@dimen/activity_vertical_margin" />
 
 
         </LinearLayout>

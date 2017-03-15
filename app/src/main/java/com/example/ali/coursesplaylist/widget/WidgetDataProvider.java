@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Binder;
-import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -26,33 +25,29 @@ public class WidgetDataProvider extends RemoteViewsService {
         return new RemoteViewsFactory() {
             private Cursor data = null;
             private AppWidgetTarget appWidgetTarget;
+
             @Override
             public void onCreate() {
-                Log.v("Widget","onCreateW");
             }
 
             @Override
             public void onDataSetChanged() {
-                Log.v("Widget","onDataChanged");
-
                 if (data != null) {
                     data.close();
                 }
                 final long identityToken = Binder.clearCallingIdentity();
                 Uri uri = DataContract.CourseEntry.CONTENT_URI;
                 data = getContentResolver().query(uri
-                        ,new String[]{DataContract.CourseEntry._ID
-                                ,DataContract.CourseEntry.PLAYLIST_IMAGE_URL
-                                ,DataContract.CourseEntry.PLAYLIST_NAME_COLUMN,
+                        , new String[]{DataContract.CourseEntry._ID
+                                , DataContract.CourseEntry.PLAYLIST_IMAGE_URL
+                                , DataContract.CourseEntry.PLAYLIST_NAME_COLUMN,
                                 DataContract.CourseEntry.PLAYLIST_KEY_COLUMN}
-                        ,null,null,null);
+                        , null, null, null);
                 Binder.restoreCallingIdentity(identityToken);
             }
 
             @Override
             public void onDestroy() {
-                Log.v("Widget","onDestroy");
-
                 if (data != null) {
                     data.close();
                     data = null;
@@ -61,19 +56,11 @@ public class WidgetDataProvider extends RemoteViewsService {
 
             @Override
             public int getCount() {
-                Log.v("Widget","getCount");
-                //test
-                if(data == null){
-                    Log.v("Widget","getCount Null");
-                }else {
-                    Log.v("Widget","getCount :" + data.getCount());
-                }
                 return data == null ? 0 : data.getCount();
             }
 
             @Override
             public RemoteViews getViewAt(int position) {
-                Log.v("Widget","getViewAt");
 
                 if (position == AdapterView.INVALID_POSITION ||
                         data == null || !data.moveToPosition(position)) {
@@ -82,29 +69,28 @@ public class WidgetDataProvider extends RemoteViewsService {
                 RemoteViews view = new RemoteViews(getPackageName(),
                         R.layout.added_course_item);
 
-                view.setTextViewText(R.id.courseName,data.getString(data.getColumnIndex(DataContract.CourseEntry.PLAYLIST_NAME_COLUMN)));
-                String imageUri = data.getString(data.getColumnIndex(DataContract.CourseEntry.PLAYLIST_IMAGE_URL));
+                view.setTextViewText(R.id.courseName, data.getString(
+                        data.getColumnIndex(DataContract.CourseEntry.PLAYLIST_NAME_COLUMN)));
+                String imageUri = data.getString(
+                        data.getColumnIndex(DataContract.CourseEntry.PLAYLIST_IMAGE_URL));
                 try {
-                    view.setImageViewBitmap(R.id.imageView,Glide.with(getApplicationContext()).load(imageUri).asBitmap().into(100,100).get());
+                    view.setImageViewBitmap(R.id.imageView,
+                            Glide.with(getApplicationContext()).load(imageUri).asBitmap()
+                                    .into(100, 100).get());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
                 final Intent fillInIntent = new Intent();
-//                Uri uri = DataContract.CourseEntry.CONTENT_URI;
-//                fillInIntent.setData(uri);
-//                fillInIntent.putExtra("id",data.getString(data.getColumnIndex(DataContract.CourseEntry.PLAYLIST_KEY_COLUMN)));
-                view.setOnClickFillInIntent(R.id.line1,fillInIntent);
+                view.setOnClickFillInIntent(R.id.line1, fillInIntent);
 
                 return view;
             }
 
             @Override
             public RemoteViews getLoadingView() {
-                Log.v("Widget","getLoadingView");
-
-                return new RemoteViews(getPackageName(),R.layout.added_course_item);
+                return new RemoteViews(getPackageName(), R.layout.added_course_item);
             }
 
             @Override
@@ -114,12 +100,10 @@ public class WidgetDataProvider extends RemoteViewsService {
 
             @Override
             public long getItemId(int i) {
-                Log.v("Widget","getItemId");
 
-                if(data.moveToPosition(i)){
-                    Log.v("Widget","getItemId");
-                    Long l = Long.parseLong(data.getString(data.getColumnIndex(DataContract.CourseEntry._ID)));
-                    Log.v("Widget","getItemId : "+i +" Long : "+l);
+                if (data.moveToPosition(i)) {
+                    Long l = Long.parseLong(
+                            data.getString(data.getColumnIndex(DataContract.CourseEntry._ID)));
                     return l;
                 }
                 return i;

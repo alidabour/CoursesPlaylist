@@ -4,7 +4,7 @@
     android:id="@+id/activity_description"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ali.coursesplaylist.DescriptionActivity">
+    tools:context="com.example.ali.coursesplaylist.controller.DescriptionActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,12 +17,12 @@
             android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/eightDP"
+            android:layout_marginBottom="@dimen/eightDP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp">
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:layout_weight="2"
@@ -45,7 +45,7 @@
         </LinearLayout>
 
         <TextView
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/eightDP"
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,9 +56,9 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
 
         <TextView
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/eightDP"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -73,11 +73,11 @@
             android:text="@string/curriculum"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false" />
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -23,13 +23,15 @@ public class CourseContentProvider extends ContentProvider {
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private CourseDbHelper courseDbHelper;
-    public static UriMatcher buildUriMatcher(){
+
+    public static UriMatcher buildUriMatcher() {
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(DataContract.AUTHORITY, DataContract.PATH_COURSE, COURSES);
         uriMatcher.addURI(DataContract.AUTHORITY, DataContract.PATH_COURSE + "/#", COURSES_WITH_ID);
 
         return uriMatcher;
     }
+
     @Override
     public boolean onCreate() {
         Context context = getContext();
@@ -39,7 +41,7 @@ public class CourseContentProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public Cursor query(Uri uri,  String[] projection, String selection,
+    public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         // Get access to underlying database (read-only for query)
         final SQLiteDatabase db = courseDbHelper.getReadableDatabase();
@@ -52,7 +54,7 @@ public class CourseContentProvider extends ContentProvider {
         switch (match) {
             // Query for the tasks directory
             case COURSES:
-                retCursor =  db.query(TABLE_NAME,
+                retCursor = db.query(TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -60,7 +62,7 @@ public class CourseContentProvider extends ContentProvider {
                         null,
                         sortOrder);
                 break;
-            // Default exception
+            // ImageQuality exception
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -82,14 +84,15 @@ public class CourseContentProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
         final SQLiteDatabase db = courseDbHelper.getWritableDatabase();
-        int match  = sUriMatcher.match(uri);
+        int match = sUriMatcher.match(uri);
         Uri returnUri;
-        switch (match){
+        switch (match) {
             case COURSES:
-                long id = db.insert(TABLE_NAME,null,contentValues);
-                if (id>0){
-                    returnUri = ContentUris.withAppendedId(DataContract.CourseEntry.CONTENT_URI , id);
-                }else {
+                long id = db.insert(TABLE_NAME, null, contentValues);
+                if (id > 0) {
+                    returnUri = ContentUris
+                            .withAppendedId(DataContract.CourseEntry.CONTENT_URI, id);
+                } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 }
                 break;

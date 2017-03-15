@@ -7,14 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.ali.coursesplaylist.R;
 import com.example.ali.coursesplaylist.data.Course;
 import com.example.ali.coursesplaylist.data.DataContract;
-import com.example.ali.coursesplaylist.data.JsonData.Snippet;
 
 /**
  * Created by Ali on 2/20/2017.
@@ -24,26 +22,32 @@ public class AddedAdapter extends RecyclerView.Adapter<AddedAdapter.AddedViewHol
     private Cursor mCursor;
     private Context context;
     private OnClickHandlerAdd onClickHandler;
-    public interface OnClickHandlerAdd{
+
+    public interface OnClickHandlerAdd {
         void onClick(Course course);
     }
-    public AddedAdapter(Context context,OnClickHandlerAdd onClickHandler){
+
+    public AddedAdapter(Context context, OnClickHandlerAdd onClickHandler) {
         this.context = context;
         this.onClickHandler = onClickHandler;
     }
+
     @Override
     public AddedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.added_course_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.added_course_item, parent, false);
         return new AddedViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(AddedViewHolder holder, int position) {
         mCursor.moveToPosition(position);
-        String url = mCursor.getString(mCursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_IMAGE_URL));
+        String url = mCursor
+                .getString(mCursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_IMAGE_URL));
         Glide.with(context).load(url).into(holder.courseImage);
 
-        String courseName = mCursor.getString(mCursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_NAME_COLUMN));
+        String courseName = mCursor
+                .getString(mCursor.getColumnIndex(DataContract.CourseEntry.PLAYLIST_NAME_COLUMN));
         holder.courseName.setText(courseName);
 
         holder.courseName.setContentDescription(courseName);
@@ -57,6 +61,7 @@ public class AddedAdapter extends RecyclerView.Adapter<AddedAdapter.AddedViewHol
         }
         return mCursor.getCount();
     }
+
     public Cursor swapCursor(Cursor c) {
         // check if this cursor is the same as the previous cursor (mCursor)
         if (mCursor == c) {
@@ -72,9 +77,10 @@ public class AddedAdapter extends RecyclerView.Adapter<AddedAdapter.AddedViewHol
         return temp;
     }
 
-    public class AddedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class AddedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView courseName;
         ImageView courseImage;
+
         public AddedViewHolder(View itemView) {
             super(itemView);
             courseName = (TextView) itemView.findViewById(R.id.courseName);

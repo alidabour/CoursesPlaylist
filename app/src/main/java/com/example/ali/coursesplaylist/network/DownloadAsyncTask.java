@@ -1,4 +1,4 @@
-package com.example.ali.coursesplaylist;
+package com.example.ali.coursesplaylist.network;
 
 import android.os.AsyncTask;
 import android.util.Log;

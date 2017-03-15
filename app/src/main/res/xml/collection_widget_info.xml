@@ -3,11 +3,10 @@
     android:initialKeyguardLayout="@layout/course_app_widget"
     android:initialLayout="@layout/course_app_widget"
     android:minHeight="110dp"
-    android:previewImage="@drawable/header"
+    android:previewImage="@drawable/rsz_header"
     android:minWidth="250dp"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="1800"
     android:widgetCategory="home_screen">
 
 </appwidget-provider>
-    <!--android:previewImage="@drawable/stock_hawk_ori_portrait"-->

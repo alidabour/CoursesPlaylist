@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1096828978391-l3norje2fq79f1o7lspr85hpt7md6b4m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ali.coursesplaylist",
+            "certificate_hash": "42fad9797259bd632fd08648ce2096df923653dc"
+          }
+        },
+        {
           "client_id": "1096828978391-4729du5erftgj9ga576q3uhuoaltqods.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096828978391-4729du5erftgj9ga576q3uhuoaltqods.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

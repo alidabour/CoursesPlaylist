@@ -12,19 +12,19 @@ public class Thumbnails implements Parcelable
 
     @SerializedName("default")
     @Expose
-    private Default _default;
+    private ImageQuality _imageQuality;
     @SerializedName("medium")
     @Expose
-    private Medium medium;
+    private ImageQuality medium;
     @SerializedName("high")
     @Expose
-    private High high;
+    private ImageQuality high;
     @SerializedName("standard")
     @Expose
-    private Standard standard;
+    private ImageQuality standard;
     @SerializedName("maxres")
     @Expose
-    private Maxres maxres;
+    private ImageQuality maxres;
     public final static Parcelable.Creator<Thumbnails> CREATOR = new Creator<Thumbnails>() {
 
 
@@ -33,11 +33,11 @@ public class Thumbnails implements Parcelable
         })
         public Thumbnails createFromParcel(Parcel in) {
             Thumbnails instance = new Thumbnails();
-            instance._default = ((Default) in.readValue((Default.class.getClassLoader())));
-            instance.medium = ((Medium) in.readValue((Medium.class.getClassLoader())));
-            instance.high = ((High) in.readValue((High.class.getClassLoader())));
-            instance.standard = ((Standard) in.readValue((Standard.class.getClassLoader())));
-            instance.maxres = ((Maxres) in.readValue((Maxres.class.getClassLoader())));
+            instance._imageQuality = ((ImageQuality) in.readValue((ImageQuality.class.getClassLoader())));
+            instance.medium = ((ImageQuality) in.readValue((ImageQuality.class.getClassLoader())));
+            instance.high = ((ImageQuality) in.readValue((ImageQuality.class.getClassLoader())));
+            instance.standard = ((ImageQuality) in.readValue((ImageQuality.class.getClassLoader())));
+            instance.maxres = ((ImageQuality) in.readValue((ImageQuality.class.getClassLoader())));
             return instance;
         }
 
@@ -48,48 +48,48 @@ public class Thumbnails implements Parcelable
     }
     ;
 
-    public Default getDefault() {
-        return _default;
+    public ImageQuality getDefault() {
+        return _imageQuality;
     }
 
-    public void setDefault(Default _default) {
-        this._default = _default;
+    public void setDefault(ImageQuality _imageQuality) {
+        this._imageQuality = _imageQuality;
     }
 
-    public Medium getMedium() {
+    public ImageQuality getMedium() {
         return medium;
     }
 
-    public void setMedium(Medium medium) {
+    public void setMedium(ImageQuality medium) {
         this.medium = medium;
     }
 
-    public High getHigh() {
+    public ImageQuality getHigh() {
         return high;
     }
 
-    public void setHigh(High high) {
+    public void setHigh(ImageQuality high) {
         this.high = high;
     }
 
-    public Standard getStandard() {
+    public ImageQuality getStandard() {
         return standard;
     }
 
-    public void setStandard(Standard standard) {
+    public void setStandard(ImageQuality standard) {
         this.standard = standard;
     }
 
-    public Maxres getMaxres() {
+    public ImageQuality getMaxres() {
         return maxres;
     }
 
-    public void setMaxres(Maxres maxres) {
+    public void setMaxres(ImageQuality maxres) {
         this.maxres = maxres;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(_default);
+        dest.writeValue(_imageQuality);
         dest.writeValue(medium);
         dest.writeValue(high);
         dest.writeValue(standard);
