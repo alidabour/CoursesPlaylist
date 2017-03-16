@@ -55,7 +55,7 @@ public class DescriptionActivity extends AppCompatActivity implements StringResp
     @BindView(R.id.channelTitle) TextView channelTitle;
     @BindView(R.id.description) TextView description;
     @BindView(R.id.imageView2) ImageView imageView;
-    @BindView(R.id.nestedScrollView) NestedScrollView nestedScrollView;
+    @BindView(R.id.activity_description) NestedScrollView nestedScrollView;
     String key;
     String url;
     String playName;
