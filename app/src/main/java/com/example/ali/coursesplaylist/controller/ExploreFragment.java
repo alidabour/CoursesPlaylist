@@ -3,6 +3,7 @@ package com.example.ali.coursesplaylist.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
@@ -78,10 +79,12 @@ public class ExploreFragment extends Fragment implements StringResponseListener 
     @Override
     public void onStart() {
         super.onStart();
+
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 recyclerView.setAdapter(null);
+                headerRVDatas = new ArrayList<>();
                 HashMap<String, ArrayList<Course>> data = new HashMap<>();
                 for (DataSnapshot x : dataSnapshot.getChildren()) {
                     String key = x.getKey();

@@ -1,0 +1,59 @@
+{
+  "course" : {
+    "Android Development" : {
+      "-2" : {
+        "channelTitle" : "Matt Boutell",
+        "description" : " ",
+        "key" : "PLTCpWnqGNdzoqpc0LGh5YgwsXOXrvyS4c",
+        "name" : "Intents and Activities",
+        "url" : "https://i.ytimg.com/vi/kztLOGHmt7A/mqdefault.jpg"
+      },
+      "-1" : {
+        "channelTitle" : "Udacity",
+        "description" : " ",
+        "key" : "PLAwxTw4SYaPmXoZF20ky_Amke3Mu4lZEo",
+        "name" : "Android Development for Beginners",
+        "url" : "https://i.ytimg.com/vi/LQpAmM4vznQ/mqdefault.jpg"
+      }
+    },
+    "Java Programming" : {
+      "-3" : {
+        "channelTitle" : "Derek Banas",
+        "description" : "Massive Java Video Tutorial : Java, Java Tutorial, java video tutorials, java video, java tutorials video, beginner java tutorial",
+        "key" : "PLE7E8B7F4856C9B19",
+        "name" : "Java Video Tutorial",
+        "url" : "https://i.ytimg.com/vi/TBWX97e1E9g/mqdefault.jpg"
+      },
+      "-2" : {
+        "channelTitle" : "ProgrammingKnowledge",
+        "description" : "Java Tutorial For Beginners: Java Programming From Scratch,Java Programming - Step by Step tutorial ,learn free java tutorial class sun beginner programming tutorials, download, learn, language, source code, online, core java,Java Tutorial for Beginners - Learning Java in simple and easy steps : A beginner's tutorial containing complete knowledge of Java Syntax Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI",
+        "key" : "PLS1QulWo1RIbfTjQvTdj8Y6yyq4R7g-Al",
+        "name" : "Java Tutorial For Beginners (Step by Step tutorial)",
+        "url" : "https://i.ytimg.com/vi/r59xYe3Vyks/mqdefault.jpg"
+      },
+      "-1" : {
+        "channelTitle" : "thenewboston",
+        "description" : "Here are all of my Java programming tutorials.",
+        "key" : "PLFE2CE09D83EE3E28",
+        "name" : "Java (Beginner) Programming Tutorials",
+        "url" : "https://i.ytimg.com/vi/Hl-zzrqQoSE/mqdefault.jpg"
+      }
+    },
+    "Web Development" : {
+      "-2" : {
+        "channelTitle" : "Eduonix Learning Solutions",
+        "description" : " ",
+        "key" : "PLDmvslp_VR0xGQwgn65N8XavMDLBBaxV2",
+        "name" : "Learn Complete Web Development From Scratch",
+        "url" : "https://i.ytimg.com/vi/BgnQI29VkUk/mqdefault.jpg"
+      },
+      "-1" : {
+        "channelTitle" : "LearnCode.academy",
+        "description" : "If you're wanting to learn web development and learn web dev fast, this is your place! I'll cover overviews of each piece of technology and how to put it all together to not only be able to build websites, but to get a great job building websites for a living.",
+        "key" : "PLoYCgNOIyGAB_8_iq1cL8MVeun7cB6eNc",
+        "name" : "Java (Beginner) Programming Tutorials",
+        "url" : "https://i.ytimg.com/vi/3JluqTojuME/mqdefault.jpg"
+      }
+    }
+  }
+}

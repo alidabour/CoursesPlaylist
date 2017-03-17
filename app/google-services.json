@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1096828978391-9af63atpmkj7hnb227ckegjugeb02t02.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ali.coursesplaylist",
+            "certificate_hash": "272671de2f37dc1aca37077ab7721d2f8b88c714"
+          }
+        },
+        {
           "client_id": "1096828978391-l3norje2fq79f1o7lspr85hpt7md6b4m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
