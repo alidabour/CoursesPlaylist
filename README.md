@@ -12,5 +12,4 @@ Final Project of the Udacity Android Nanodegree program.
 ## Libraries
 * [YouTube Android Player API](https://developers.google.com/youtube/android/player/)
 * [ButterKnife](https://github.com/JakeWharton/butterknife)
-* [Retrofit](https://github.com/square/retrofit)
 * [Glide](https://github.com/bumptech/glide)
